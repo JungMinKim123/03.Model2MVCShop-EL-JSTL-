@@ -97,7 +97,7 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0"
 				style="margin-top: 10px;">
 				<tr>
-					<td colspan="11">전체 ${ resultPage.totalCount() } 건수, 현재 ${ resultPage.currentPage() } 페이지
+					<td colspan="11">전체 ${ resultPage.totalCount } 건수, 현재 ${ resultPage.currentPage } 페이지
 					</td>
 				</tr>
 				<tr>
@@ -116,23 +116,23 @@
 				</tr>
 				
 				<c:set var="i" value="0"/>
-				<c:forEach var="pord" items="${list}">
+				<c:forEach var="prod" items="${list}">
 					<c:set var='i' value="${i+1}"/> 
 				<tr class="ct_list_pop">
 					<td align="center">${ i }</td>
 					<td></td>
 
 					<td align="left"><a
-						href="/updateProductView.do?prodNo=${ prod.prodNo() }&menu=${ menu }">${ prod.prodName }</a></td>
+						href="/updateProductView.do?prodNo=${ prod.prodNo }&menu=${ menu }">${ prod.prodName }</a></td>
 
 					<td></td>
-					<td align="left">${ prod.Price }</td>
+					<td align="left">${ prod.price }</td>
 					<td></td>
-					<td align="left">${ prod.ManuDate }</td>
+					<td align="left">${ prod.manuDate }</td>
 					<td></td>
 					<td align="left"><c:if test= "${ ! empty prod.proTranCode }">
 									 <c:if test= "${ prod.ProTranCode == 1}">
-									 	구매완료 <a href="/updateTranCode.do?prodNo=${ prod.prodNo() }&tranCode=2">배송하기</a>
+									 	구매완료 <a href="/updateTranCode.do?prodNo=${ prod.prodNo }&tranCode=2">배송하기</a>
 									 </c:if>
 									 <c:if test= "${prod.proTranCode==2}">
 									 	배송중
