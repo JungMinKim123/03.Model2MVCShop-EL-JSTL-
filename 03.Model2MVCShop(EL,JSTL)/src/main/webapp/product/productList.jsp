@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%-- 
 <%@page import="java.util.*"%>
 <%@page import="com.model2.mvc.common.Page"%>
@@ -71,9 +71,7 @@
 					
 					<td align="right"><select name="searchCondition"
 						class="ct_input_g" style="width: 80px">
-							<option value="0" ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" } >상품번호</option>
 							<option value="1" ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" } >상품명</option>
-							<option value="2" ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" } >상품가격</option>
 					</select> <input type="text" name="searchKeyword" value="${ search.searchKeyword }" class="ct_input_g"
 						style="width: 200px; height: 19px" /></td>
 							
@@ -130,18 +128,18 @@
 					<td></td>
 					<td align="left">${ prod.manuDate }</td>
 					<td></td>
-					<td align="left"><c:if test= "${ ! empty prod.proTranCode }">
-									 <c:if test= "${ prod.ProTranCode == 1}">
+					<td align="left"><c:if test="${ ! empty prod.proTranCode }">
+									 <c:if test="${ fn:trim(prod.proTranCode)==1}">
 									 	구매완료 <a href="/updateTranCode.do?prodNo=${ prod.prodNo }&tranCode=2">배송하기</a>
 									 </c:if>
-									 <c:if test= "${prod.proTranCode==2}">
+									 <c:if test="${ fn:trim(prod.proTranCode)==2}">
 									 	배송중
 									 </c:if>
-									 <c:if test= "${ prod.proTranCode==3}">
+									 <c:if test="${ fn:trim(prod.proTranCode)==3}">
 									 	배송완료
 									 </c:if>
 									 </c:if>
-									 <c:if test= "${ empty prod.proTranCode }">
+									 <c:if test="${ empty prod.proTranCode }">
 									 	판매중
 									 </c:if>
 					</td>
@@ -197,9 +195,7 @@
 				<tr>
 					<td align="right"><select name="searchCondition"
 						class="ct_input_g" style="width: 80px">
-							<option value="0" ${ !empty search.searchCondition && search.searchCondition == 0 ? "selected" : "" } >상품번호</option>
 							<option value="1" ${ !empty search.searchCondition && search.searchCondition == 1 ? "selected" : "" } >상품명</option>
-							<option value="2" ${ !empty search.searchCondition && search.searchCondition == 2 ? "selected" : "" } >상품가격</option>
 					</select> <input type="text" name="searchKeyword" value="${ search.searchKeyword }" class="ct_input_g"
 						style="width: 200px; height: 19px" /></td>
 					<td align="right" width="70">
@@ -255,15 +251,15 @@
 					<td align="left">${ prod.manuDate }</td>
 					<td></td>
 					<td align="left"><c:if test="${ !empty prod.proTranCode }">
-									 <c:if test="${ prod.proTranCode==3 }">
+									 <c:if test="${ fn:trim(prod.proTranCode)==3 }">
 											재고없음
 									</c:if>
-									 <c:if test="${ prod.proTranCode !=3 }">
+									 <c:if test="${ fn:trim(prod.proTranCode) !=3 }">
 										재고없음
+									</c:if>
 									</c:if>
 									<c:if test="${ empty prod.proTranCode }">
 										판매중
-									</c:if>
 									</c:if>
 					</td>
 				</tr>

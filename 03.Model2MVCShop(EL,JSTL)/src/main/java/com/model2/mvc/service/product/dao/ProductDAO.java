@@ -84,7 +84,7 @@ public class ProductDAO {
 
 		System.out.println("DBΩ√¿€");
 
-		String sql = "SELECT p.prod_no, p.prod_name, p.prod_detail, p.manufacture_day, p.price, p.image_file, p.reg_date FROM product p, transaction t WHERE p.prod_no = t.prod_no(+) ";
+		String sql = "SELECT t.tran_status_code, p.prod_no, p.prod_name, p.prod_detail, p.manufacture_day, p.price, p.image_file, p.reg_date FROM product p, transaction t WHERE p.prod_no = t.prod_no(+) ";
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {
 				sql += "AND p.prod_no = " + search.getSearchKeyword() +"";
@@ -116,7 +116,7 @@ public class ProductDAO {
 			vo.setManuDate(rs.getString("manufacture_day"));
 			vo.setPrice(rs.getInt("price"));
 			vo.setFileName(rs.getString("image_file"));
-//			vo.setProTranCode(rs.getString("tran_status_code"));
+			vo.setProTranCode(rs.getString("tran_status_code"));
 
 			list.add(vo);
 		}

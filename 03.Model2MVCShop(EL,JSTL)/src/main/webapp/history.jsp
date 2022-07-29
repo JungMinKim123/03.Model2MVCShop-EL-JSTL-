@@ -1,3 +1,5 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page contentType="text/html; charset=EUC-KR" %>
 
 <html>
@@ -21,17 +23,20 @@
 		for (int i = 0; i < cookies.length; i++) {
 			Cookie cookie = cookies[i];
 			if (cookie.getName().equals("history")) {
-				history = cookie.getValue();
+				history = URLDecoder.decode(cookie.getValue());
 			}
+			
+			System.out.println("Encoder µÈ history °ª : "+history);
 		}
 		if (history != null) {
 			String[] h = history.split(",");
 			for (int i = 0; i < h.length; i++) {
 				if (!h[i].equals("null")) {
 %>
-	<a href="/getProduct.do?prodNo=<%=h[i]%>&menu=search"	target="rightFrame"><%=h[i]%></a>
+			
+	<a href="/getProduct.do?prodNo=<%=h[i]%>&	menu=search"	target="rightFrame"><%=h[i]%></a>
 <br>
-<%
+<% 
 				}
 			}
 		}

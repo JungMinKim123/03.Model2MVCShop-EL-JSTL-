@@ -13,7 +13,10 @@ public class UpdateProductAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-//		String prodNo = (String)request.getAttribute("ProdVO");
+		String prodNo1 = request.getParameter("prodNo");
+		System.out.println("UpdateProductAction 시작 ");
+		System.out.println("Request받은 prodNo : "+prodNo1);
+		
 		
 		Product product = new Product();
 		product.setProdNo(Integer.parseInt(request.getParameter("prodNo")));
@@ -22,8 +25,12 @@ public class UpdateProductAction extends Action {
 		product.setPrice(Integer.parseInt(request.getParameter("price")));
 		product.setFileName(request.getParameter("fileName"));
 		
+		System.out.println("VO저장 완료");
+		
 		ProductService service = new ProductServiceimpl();
 		service.updateProduct(product);
+
+		System.out.println("저장된 VO값 : "+product);
 		
 		request.setAttribute("update", product);
 		
